@@ -1,0 +1,15 @@
+{
+    "name": "flixel-screenshot-plugin",
+    "url" : "https://github.com/sayofthelor/flixel-screenshot-plugin/",
+    "license": "GPL",
+    "tags": ["flixel", "screenshot"],
+    "description": "Flixel plugin for nice screenshot management.",
+    "version": "1.0.0",
+    "classPath": "src/",
+    "releasenote": "Initial release, everything is working correctly.",
+    "contributors": ["sayofthelor"],
+    "dependencies": {
+      "flixel": "",
+      "openfl": ""
+    }
+  }
