@@ -16,6 +16,8 @@ In your `Project.xml` make sure this is there:
 ```xml
 <haxelib name="flixel-screenshot-plugin" />
 ```
+Drag the `embed` folder into your project's root directory.
+
 In your project's `Main.hx` file, after the `FlxGame` is initialized, add this line:
 ```haxe
 flixel.FlxG.plugins.add(new screenshotplugin.ScreenShotPlugin());
