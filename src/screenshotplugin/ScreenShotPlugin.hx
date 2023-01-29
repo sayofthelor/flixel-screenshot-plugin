@@ -21,6 +21,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     private var screenshotSprite:Sprite;
     private var shotDisplayBitmap:Bitmap;
     private var outlineBitmap:Bitmap;
+    public static var enabled:Bool = true;
     override public function new():Void {
         super();
         if (initialized) {
@@ -55,7 +56,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     
     private var inProgress:Bool = false;
     override public function update(elapsed:Float):Void {
-        if (FlxG.keys.justPressed.F2 && !inProgress) {
+        if (FlxG.keys.justPressed.F2 && !inProgress && enabled) {
             inProgress = true;
             screenshot();
         }
