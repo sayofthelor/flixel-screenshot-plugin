@@ -13,7 +13,7 @@ import flixel.input.FlxInputState;
 
 using StringTools;
 
-@:sound("embed/screenshot.wav") @:allow(ScreenShotPlugin) class ScreenshotSound extends openfl.media.Sound {}
+// @:sound("embed/screenshot.wav") @:allow(ScreenShotPlugin) class ScreenshotSound extends openfl.media.Sound {}
 
 class ScreenShotPlugin extends flixel.FlxBasic {
     private static var initialized:Bool = false;
@@ -25,6 +25,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     private var outlineBitmap:Bitmap;
     public static var enabled:Bool = true;
     public static var screenshotKey:FlxKey = FlxKey.F2;
+    public static var saveFormat:FileFormatOption = PNG;
     override public function new():Void {
         super();
         if (initialized) {
@@ -70,14 +71,15 @@ class ScreenShotPlugin extends flixel.FlxBasic {
         var shot:Bitmap = new Bitmap(new BitmapData(Math.floor(bounds.width), Math.floor(bounds.height), true, 0));
         var m:Matrix = new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y);
         shot.bitmapData.draw(FlxG.stage, m);
-        var png:ByteArray = shot.bitmapData.encode(bounds, new openfl.display.PNGEncoderOptions());
+        var encoder = (fileFormatOption == PNG ? new openfl.display.PNGEncoderOptions() : new openfl.display.JPEGEncoderOptions());
+        var png:ByteArray = shot.bitmapData.encode(bounds, encoder);
         png.position = 0;
-        var path = "screenshots/Screenshot " + Date.now().toString().split(":").join("-") + ".png";
+        var path = "screenshots/Screenshot " + Date.now().toString().split(":").join("-") + fileFormatOption;
         var x:String = png.readUTFBytes(png.length - 1);
         if (!sys.FileSystem.exists("./screenshots/"))
             sys.FileSystem.createDirectory("./screenshots/");
         sys.io.File.saveContent(path, x);
-        FlxG.sound.play(new ScreenshotSound());
+        // FlxG.sound.play(new ScreenshotSound());
         flashSprite.alpha = 1;
         FlxTween.tween(flashSprite, {alpha: 0}, 0.25);
         shotDisplayBitmap.bitmapData = shot.bitmapData;
@@ -88,4 +90,9 @@ class ScreenShotPlugin extends flixel.FlxBasic {
             inProgress = false;
         }, startDelay: .5});
     }
+}
+
+enum abstract FileFormatOption(String) {
+    var JPEG = ".jpg";
+    var PNG = ".png";
 }
