@@ -8,6 +8,8 @@ import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.geom.Rectangle;
 import openfl.geom.Matrix;
+import flixel.input.keyboard.FlxKey;
+import flixel.input.FlxInputState;
 
 using StringTools;
 
@@ -21,6 +23,8 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     private var screenshotSprite:Sprite;
     private var shotDisplayBitmap:Bitmap;
     private var outlineBitmap:Bitmap;
+    public static var enabled:Bool = true;
+    public static var screenshotKey:FlxKey = FlxKey.F2;
     override public function new():Void {
         super();
         if (initialized) {
@@ -55,7 +59,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     
     private var inProgress:Bool = false;
     override public function update(elapsed:Float):Void {
-        if (FlxG.keys.justPressed.F2 && !inProgress) {
+        if (FlxG.keys.checkStatus(screenshotKey, JUST_PRESSED) && !inProgress && enabled) {
             inProgress = true;
             screenshot();
         }
