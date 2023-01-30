@@ -9,7 +9,7 @@ import openfl.display.BitmapData;
 import openfl.geom.Rectangle;
 import openfl.geom.Matrix;
 import flixel.input.keyboard.FlxKey;
-import flixel.input.FlxInputState;
+import flixel.input.FlxInput.FlxInputState;
 
 using StringTools;
 
