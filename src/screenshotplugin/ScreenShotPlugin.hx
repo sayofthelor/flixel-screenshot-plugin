@@ -77,7 +77,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
         var bounds:Rectangle = new Rectangle(0, 0, FlxG.stage.stageWidth, FlxG.stage.stageHeight);
         var shot:Bitmap = new Bitmap(new BitmapData(Math.floor(bounds.width), Math.floor(bounds.height), true, 0));
         shot.bitmapData.draw(FlxG.stage, new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y));
-        var png:ByteArray = shot.bitmapData.encode(bounds, (saveFormat == PNG ? new openfl.display.PNGEncoderOptions() : new openfl.display.JPEGEncoderOptions()));
+        var png:ByteArray = shot.bitmapData.encode(shot.getRect, (saveFormat == PNG ? new openfl.display.PNGEncoderOptions() : new openfl.display.JPEGEncoderOptions()));
         png.position = 0;
         var path = "screenshots/Screenshot " + Date.now().toString().split(":").join("-") + saveFormat;
         if (!sys.FileSystem.exists("./screenshots/"))
