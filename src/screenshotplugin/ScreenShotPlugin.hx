@@ -24,7 +24,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     private var shotDisplayBitmap:Bitmap;
     private var outlineBitmap:Bitmap;
     public static var enabled:Bool = true;
-    public static var screenshotKey:FlxKey = FlxKey.F2;
+    public static final screenshotKey:FlxKey = FlxKey.F2;
     public static var saveFormat(default, set):FileFormatOption = PNG;
     public static function set_saveFormat(v:FileFormatOption) {
         if (v != JPEG && v != PNG) {
@@ -76,17 +76,13 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     private function screenshot():Void {
         var bounds:Rectangle = new Rectangle(0, 0, FlxG.stage.stageWidth, FlxG.stage.stageHeight);
         var shot:Bitmap = new Bitmap(new BitmapData(Math.floor(bounds.width), Math.floor(bounds.height), true, 0));
-        var m:Matrix = new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y);
-        shot.bitmapData.draw(FlxG.stage, m);
-        var encoder:openfl.utils.Object = (saveFormat == PNG ? new openfl.display.PNGEncoderOptions() : new openfl.display.JPEGEncoderOptions());
-        var png:ByteArray = shot.bitmapData.encode(bounds, encoder);
+        shot.bitmapData.draw(FlxG.stage, new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y));
+        var png:ByteArray = shot.bitmapData.encode(bounds, (saveFormat == PNG ? new openfl.display.PNGEncoderOptions() : new openfl.display.JPEGEncoderOptions()));
         png.position = 0;
         var path = "screenshots/Screenshot " + Date.now().toString().split(":").join("-") + saveFormat;
-        var x:String = png.readUTFBytes(png.length - 1);
         if (!sys.FileSystem.exists("./screenshots/"))
             sys.FileSystem.createDirectory("./screenshots/");
-        sys.io.File.saveContent(path, x);
-        // FlxG.sound.play(new ScreenshotSound());
+        sys.io.File.saveContent(path, png.readUTFBytes(png.length - 1));
         flashSprite.alpha = 1;
         FlxTween.tween(flashSprite, {alpha: 0}, 0.25);
         shotDisplayBitmap.bitmapData = shot.bitmapData;
