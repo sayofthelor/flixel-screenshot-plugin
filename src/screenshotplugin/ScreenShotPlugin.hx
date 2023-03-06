@@ -74,15 +74,14 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     }
 
     private function screenshot():Void {
-        var bounds:Rectangle = new Rectangle(0, 0, FlxG.stage.stageWidth, FlxG.stage.stageHeight);
-        var shot:Bitmap = new Bitmap(new BitmapData(Math.floor(bounds.width), Math.floor(bounds.height), true, 0));
-        shot.bitmapData.draw(FlxG.stage, new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y));
-        var png:ByteArray = shot.bitmapData.encode(shot.getRect, (saveFormat == PNG ? new openfl.display.PNGEncoderOptions() : new openfl.display.JPEGEncoderOptions()));
+        var shot:Bitmap = new Bitmap(new BitmapData(Math.floor(FlxG.stage.stageWidth), Math.floor(FlxG.stage.stageHeight), true, 0));
+        shot.bitmapData.draw(FlxG.stage, new Matrix(1, 0, 0, 1, -0, -0));
+        var png:ByteArray = shot.bitmapData.encode(shot.bitmapData.rect, (saveFormat == PNG ? new openfl.display.PNGEncoderOptions() : new openfl.display.JPEGEncoderOptions()));
         png.position = 0;
         var path = "screenshots/Screenshot " + Date.now().toString().split(":").join("-") + saveFormat;
         if (!sys.FileSystem.exists("./screenshots/"))
             sys.FileSystem.createDirectory("./screenshots/");
-        sys.io.File.saveContent(path, png.readUTFBytes(png.length - 1));
+        sys.io.File.saveBytes(path, png);
         flashSprite.alpha = 1;
         FlxTween.tween(flashSprite, {alpha: 0}, 0.25);
         shotDisplayBitmap.bitmapData = shot.bitmapData;
