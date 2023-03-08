@@ -65,15 +65,17 @@ class ScreenShotPlugin extends flixel.FlxBasic {
         });
     }
     
-    private var inProgress:Bool = false;
     override public function update(elapsed:Float):Void {
-        if (FlxG.keys.checkStatus(screenshotKey, JUST_PRESSED) && !inProgress && enabled) {
-            inProgress = true;
+        if (FlxG.keys.checkStatus(screenshotKey, JUST_PRESSED) && enabled) {
             screenshot();
         }
     }
 
     private function screenshot():Void {
+        FlxTween.cancelTweensOf(flashSprite);
+        FlxTween.cancelTweensOf(screenshotSprite);
+        flashSprite.alpha = 0;
+        screenshotSprite.alpha = 0;
         var shot:Bitmap = new Bitmap(new BitmapData(Math.floor(FlxG.stage.stageWidth), Math.floor(FlxG.stage.stageHeight), true, 0));
         shot.bitmapData.draw(FlxG.stage, new Matrix(1, 0, 0, 1, -0, -0));
         var png:ByteArray = shot.bitmapData.encode(shot.bitmapData.rect, (saveFormat == PNG ? new openfl.display.PNGEncoderOptions() : new openfl.display.JPEGEncoderOptions()));
@@ -88,9 +90,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
         shotDisplayBitmap.x = outlineBitmap.x + 5;
         shotDisplayBitmap.y = outlineBitmap.y + 5;
         screenshotSprite.alpha = 1;
-        FlxTween.tween(screenshotSprite, {alpha: 0}, 0.5, {onComplete: (t) -> {
-            inProgress = false;
-        }, startDelay: .5});
+        FlxTween.tween(screenshotSprite, {alpha: 0}, 0.5, {startDelay: .5});
     }
 }
 
