@@ -24,7 +24,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     private var shotDisplayBitmap:Bitmap;
     private var outlineBitmap:Bitmap;
     public static var enabled:Bool = true;
-    public static final screenshotKey:FlxKey = FlxKey.F2;
+    public static var screenshotKey:FlxKey = FlxKey.F2;
     public static var saveFormat(default, set):FileFormatOption = PNG;
     public static function set_saveFormat(v:FileFormatOption) {
         if (v != JPEG && v != PNG) {
