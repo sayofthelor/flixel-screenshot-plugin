@@ -4,10 +4,10 @@
     "license": "GPL",
     "tags": ["flixel", "screenshot"],
     "description": "Flixel plugin for nice screenshot management.",
-    "version": "1.0.0",
+    "version": "1.5.0",
     "classPath": "src/",
-    "releasenote": "Initial release, everything is working correctly.",
-    "contributors": ["sayofthelor"],
+    "releasenote": "Fixes lots of issues, new rebindable key, JPEG support.",
+    "contributors": ["sayofthelor", "vidyagirl", "MemeHoovy"],
     "dependencies": {
       "flixel": "",
       "openfl": ""
