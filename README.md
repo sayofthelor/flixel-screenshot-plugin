@@ -1,3 +1,5 @@
+<div align="center">
+
 # flixel-screenshot-plugin
 
 ## Flixel plugin for nice screenshot management.
