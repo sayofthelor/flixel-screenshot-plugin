@@ -66,7 +66,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     }
     
     override public function update(elapsed:Float):Void {
-        if (FlxG.keys.checkStatus(screenshotKey, JUST_PRESSED) && enabled) {
+        if (FlxG.keys.checkStatus(screenshotKey ?? FlxKey.F2, JUST_PRESSED) && enabled) {
             screenshot();
         }
     }
