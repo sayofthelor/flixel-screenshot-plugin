@@ -23,10 +23,18 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     private var screenshotSprite:Sprite;
     private var shotDisplayBitmap:Bitmap;
     private var outlineBitmap:Bitmap;
+    private var lastWidth:Float = FlxG.width;
+    private var lastHeight:Float = FlxG.height;
     public static var enabled:Bool = true;
     public static var screenshotKey:FlxKey = FlxKey.F2;
     public static var saveFormat(default, set):FileFormatOption = PNG;
     public static var screenshotPath:String = "screenshots";
+    public static var flashColor(default, set):Int = 0xFFFFFFFF;
+    public static function set_flashColor(v:Int):Int {
+        if (flashBitmap != null)
+            flashBitmap.bitmapData = new BitmapData(lastWidth, lastHeight, true, v);
+        return flashColor = v;
+    }
     public static function set_saveFormat(v:FileFormatOption) {
         if (v != JPEG && v != PNG) {
             throw new haxe.Exception("Unsupported value for saveFormat: " + v);
@@ -42,11 +50,12 @@ class ScreenShotPlugin extends flixel.FlxBasic {
             return;
         }
         initialized = true;
+        this.flashColor = flashColor;
         container = new Sprite();
         FlxG.stage.addChild(container);
         flashSprite = new Sprite();
         flashSprite.alpha = 0;
-        flashBitmap = new Bitmap(new BitmapData(FlxG.width, FlxG.height, true, flashColor));
+        flashBitmap = new Bitmap(new BitmapData(FlxG.width, FlxG.height, true, this.flashColor));
         flashSprite.addChild(flashBitmap);
         screenshotSprite = new Sprite();
         screenshotSprite.alpha = 0;
@@ -61,8 +70,10 @@ class ScreenShotPlugin extends flixel.FlxBasic {
         screenshotSprite.addChild(shotDisplayBitmap);
         container.addChild(flashSprite);
         @:privateAccess openfl.Lib.application.window.onResize.add((w, h) -> {
-            flashBitmap.bitmapData = new BitmapData(w, h, true, 0xFFFFFFFF);
+            flashBitmap.bitmapData = new BitmapData(w, h, true, this.flashColor);
             outlineBitmap.bitmapData = new BitmapData(Std.int(w / 5) + 10, Std.int(h / 5) + 10, true, 0xffffffff);
+            lastWidth = w;
+            lastHeight = h;
         });
     }
     
