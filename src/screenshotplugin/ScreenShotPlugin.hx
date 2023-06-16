@@ -26,6 +26,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     public static var enabled:Bool = true;
     public static var screenshotKey:FlxKey = FlxKey.F2;
     public static var saveFormat(default, set):FileFormatOption = PNG;
+    public static var screenshotPath:String = "screenshots";
     public static function set_saveFormat(v:FileFormatOption) {
         if (v != JPEG && v != PNG) {
             throw new haxe.Exception("Unsupported value for saveFormat: " + v);
@@ -33,7 +34,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
         }
         return saveFormat = v;
     }
-    override public function new():Void {
+    override public function new(flashColor:Int = 0xFFFFFFFF):Void {
         super();
         if (initialized) {
             FlxG.plugins.remove(this);
@@ -45,7 +46,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
         FlxG.stage.addChild(container);
         flashSprite = new Sprite();
         flashSprite.alpha = 0;
-        flashBitmap = new Bitmap(new BitmapData(FlxG.width, FlxG.height, true, 0xFFFFFFFF));
+        flashBitmap = new Bitmap(new BitmapData(FlxG.width, FlxG.height, true, flashColor));
         flashSprite.addChild(flashBitmap);
         screenshotSprite = new Sprite();
         screenshotSprite.alpha = 0;
@@ -81,8 +82,8 @@ class ScreenShotPlugin extends flixel.FlxBasic {
         var png:ByteArray = shot.bitmapData.encode(shot.bitmapData.rect, (saveFormat == PNG ? new openfl.display.PNGEncoderOptions() : new openfl.display.JPEGEncoderOptions()));
         png.position = 0;
         var path = "screenshots/Screenshot " + Date.now().toString().split(":").join("-") + saveFormat;
-        if (!sys.FileSystem.exists("./screenshots/"))
-            sys.FileSystem.createDirectory("./screenshots/");
+        if (!sys.FileSystem.exists("./${screenshotPath}/"))
+            sys.FileSystem.createDirectory("./${screenshotPath}/");
         sys.io.File.saveBytes(path, png);
         flashSprite.alpha = 1;
         FlxTween.tween(flashSprite, {alpha: 0}, 0.25);
