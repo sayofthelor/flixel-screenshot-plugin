@@ -4,7 +4,7 @@
 
 ## Flixel plugin for nice screenshot management.
 
-## All screenshots are saved to the `./screenshots/` folder by default, but the path can be customizable.
+## All screenshots are saved to the `./screenshots/` folder by default, but the path can be customized.
 
 ### Some original code from [flixel-addons](http://lib.haxe.org/p/flixel-addons).
 
