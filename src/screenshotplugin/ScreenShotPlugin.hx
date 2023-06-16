@@ -16,6 +16,7 @@ using StringTools;
 // @:sound("embed/screenshot.wav") @:allow(ScreenShotPlugin) class ScreenshotSound extends openfl.media.Sound {}
 
 class ScreenShotPlugin extends flixel.FlxBasic {
+    public static var current:ScreenShotPlugin;
     private static var initialized:Bool = false;
     private var container:Sprite;
     private var flashSprite:Sprite;
@@ -31,9 +32,12 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     public static var screenshotPath:String = "screenshots";
     public static var flashColor(default, set):Int = 0xFFFFFFFF;
     public static function set_flashColor(v:Int):Int {
-        if (flashBitmap != null)
-            flashBitmap.bitmapData = new BitmapData(lastWidth, lastHeight, true, v);
-        return flashColor = v;
+        flashColor = v;
+        @:privateAccess {
+            if (current != null && current.flashBitmap != null)
+                current.flashBitmap.bitmapData = new BitmapData(lastWidth, lastHeight, true, v);
+        }
+        return flashColor;
     }
     public static function set_saveFormat(v:FileFormatOption) {
         if (v != JPEG && v != PNG) {
@@ -50,6 +54,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
             return;
         }
         initialized = true;
+        current = this;
         this.flashColor = flashColor;
         container = new Sprite();
         FlxG.stage.addChild(container);
