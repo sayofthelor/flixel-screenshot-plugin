@@ -78,8 +78,8 @@ class ScreenShotPlugin extends flixel.FlxBasic {
         FlxTween.cancelTweensOf(screenshotSprite);
         flashSprite.alpha = 0;
         screenshotSprite.alpha = 0;
-		var image:Image = FlxG.stage.window.readPixels();
-		var shot:Bitmap = new Bitmap(BitmapData.fromImage(image));
+        var image:Image = FlxG.stage.window.readPixels();
+	var shot:Bitmap = new Bitmap(BitmapData.fromImage(image));
         var png:ByteArray = shot.bitmapData.encode(shot.bitmapData.rect, (saveFormat == PNG ? new openfl.display.PNGEncoderOptions() : new openfl.display.JPEGEncoderOptions()));
         png.position = 0;
         var path = "screenshots/Screenshot " + Date.now().toString().split(":").join("-") + saveFormat;
