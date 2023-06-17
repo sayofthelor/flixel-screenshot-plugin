@@ -10,6 +10,7 @@ import openfl.geom.Rectangle;
 import openfl.geom.Matrix;
 import flixel.input.keyboard.FlxKey;
 import flixel.input.FlxInput.FlxInputState;
+import lime.graphics.Image;
 
 using StringTools;
 
@@ -77,8 +78,8 @@ class ScreenShotPlugin extends flixel.FlxBasic {
         FlxTween.cancelTweensOf(screenshotSprite);
         flashSprite.alpha = 0;
         screenshotSprite.alpha = 0;
-        var shot:Bitmap = new Bitmap(new BitmapData(Math.floor(FlxG.stage.stageWidth), Math.floor(FlxG.stage.stageHeight), true, 0));
-        shot.bitmapData.draw(FlxG.stage, new Matrix(1, 0, 0, 1, -0, -0));
+		var image:Image = FlxG.stage.window.readPixels();
+		var shot:Bitmap = new Bitmap(BitmapData.fromImage(image));
         var png:ByteArray = shot.bitmapData.encode(shot.bitmapData.rect, (saveFormat == PNG ? new openfl.display.PNGEncoderOptions() : new openfl.display.JPEGEncoderOptions()));
         png.position = 0;
         var path = "screenshots/Screenshot " + Date.now().toString().split(":").join("-") + saveFormat;
