@@ -1,10 +1,19 @@
-<div align="center">
+<div align="left">
 
 # flixel-screenshot-plugin
 
-## Flixel plugin for nice screenshot management.
-
-## All screenshots are saved to the `./screenshots/` folder.
+## Flixel plugin for nice screenshot management, with many customizations
+```haxe
+ScreenShotPlugin.enabled; // Enable/disable the plugin at any time
+ScreenShotPlugin.screenshtotKeys; // Keys to press to do a screenshot
+ScreenShotPlugin.saveFormat; // The save file type (PNG/ JPEG)
+ScreenShotPlugin.screenshotPath; // The path where to save the screenshots
+ScreenShotPlugin.flashColor; // The color of the flash that appears when taking a screenshot
+ScreenShotPlugin.outlineColor; // The shot display outline's color that appears when taking a screenshot
+ScreenShotPlugin.screenshotFadeTime; // The flash fade-in duration
+ScreenShotPlugin.JPEGQuality; // If `saveFormat` is set to JPEG, this defines the quality of the JPEG files
+ScreenShotPlugin.sound; // Custom sound asset to play when the screenshot is taken (if null, no sound is played)
+```
 
 ### Some original code from [flixel-addons](http://lib.haxe.org/p/flixel-addons).
 
@@ -27,13 +36,3 @@ In your project's `Main.hx` file, after the `FlxGame` is initialized, add this l
 flixel.FlxG.plugins.add(new screenshotplugin.ScreenShotPlugin());
 ```
 And you're done!
-
-If you want to save as a JPEG file instead, run this after the last line.
-```haxe
-screenshotplugin.ScreenShotPlugin.saveFormat = JPEG;
-```
-
-The screenshot hotkey is an FlxKey, and is bound to F2 by default. You can change it like this:
-```haxe
-screenshotplugin.ScreenShotPlugin.screenshotKey = FlxKey.Q;
-```
