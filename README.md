@@ -3,7 +3,6 @@
 # flixel-screenshot-plugin
 
 ## Flixel plugin for nice screenshot management, with many customizations
-<div align="left">
 ```haxe
 ScreenShotPlugin.enabled; // Enable/disable the plugin at any time
 ScreenShotPlugin.screenshtotKeys; // Keys to press to do a screenshot
@@ -15,7 +14,6 @@ ScreenShotPlugin.screenshotFadeTime; // The flash fade-in duration
 ScreenShotPlugin.JPEGQuality; // If `saveFormat` is set to JPEG, this defines the quality of the JPEG files
 ScreenShotPlugin.sound; // Custom sound asset to play when the screenshot is taken (if null, no sound is played)
 ```
-<div align="center">
 
 ### Some original code from [flixel-addons](http://lib.haxe.org/p/flixel-addons).
 
