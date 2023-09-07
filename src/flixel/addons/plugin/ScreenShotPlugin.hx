@@ -61,7 +61,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     /**
      * The quality of screenshots saved as `JPEG`, default to 80
      */
-    public static var JPEGQuality(default, set):Int = 80;
+    public static var jpegQuality(default, set):Int = 80;
 
     /**
      * Custom sound asset to play when the screenshot is taken.
