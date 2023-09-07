@@ -157,8 +157,8 @@ class ScreenShotPlugin extends flixel.FlxBasic {
         return outlineColor;
     }
 
-    public static function set_JPEGQuality(v:Int):Int {
-        return JPEGQuality = Std.int(Math.max(0, Math.min(100, v)));
+    public static function set_jpegQuality(v:Int):Int {
+        return jpegQuality = Std.int(Math.max(0, Math.min(100, v)));
     }
     
     private static var lastWidth:Int;
@@ -313,7 +313,7 @@ enum abstract FileFormatOption(String) from String {
 
     public function returnEncoder():Any {
         return switch (this:FileFormatOption) {
-            case JPEG: new openfl.display.JPEGEncoderOptions(ScreenShotPlugin.JPEGQuality);
+            case JPEG: new openfl.display.JPEGEncoderOptions(ScreenShotPlugin.jpegQuality);
             default: new openfl.display.PNGEncoderOptions();
         }
     }
