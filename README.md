@@ -19,7 +19,7 @@ ScreenShotPlugin.screenshotPath; // The path where to save the screenshots
 ScreenShotPlugin.flashColor; // The color of the flash that appears when taking a screenshot
 ScreenShotPlugin.outlineColor; // The shot display outline's color that appears when taking a screenshot
 ScreenShotPlugin.screenshotFadeTime; // The flash fade-in duration
-ScreenShotPlugin.JPEGQuality; // If `saveFormat` is set to JPEG, this defines the quality of the JPEG files
+ScreenShotPlugin.jpegQuality; // If `saveFormat` is set to JPEG, this defines the quality of the JPEG files
 ScreenShotPlugin.sound; // Custom sound asset to play when the screenshot is taken (if null, no sound is played)
 ```
 
