@@ -1,6 +1,14 @@
-<div align="left">
+<div align="center">
 
 # flixel-screenshot-plugin
+
+## `haxelib install flixel-screenshot-plugin`
+
+## or
+
+## `haxelib git flixel-screenshot-plugin http://github.com/sayofthelor/flixel-screenshot-plugin` (currently recommended)
+
+</div>
 
 ## Flixel plugin for nice screenshot management, with many customizations
 ```haxe
@@ -19,14 +27,6 @@ ScreenShotPlugin.sound; // Custom sound asset to play when the screenshot is tak
 
 # Configuring
 Make sure you have `flixel` and `openfl` installed.
-Run the command:
-```
-haxelib install flixel-screenshot-plugin
-```
-To install a more bleeding-edge version (may be unstable), run this:
-```
-haxelib git flixel-screenshot-plugin http://github.com/sayofthelor/flixel-screenshot-plugin
-```
 In your `Project.xml` make sure this is there:
 ```xml
 <haxelib name="flixel-screenshot-plugin" />
