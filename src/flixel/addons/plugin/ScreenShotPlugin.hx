@@ -1,15 +1,19 @@
 package flixel.addons.plugin;
 
-import flixel.util.FlxSignal.FlxTypedSignal;
-import flixel.FlxCamera;
-import flixel.system.FlxAssets.FlxSoundAsset;
-import openfl.utils.ByteArray;
-import openfl.display.Sprite;
-import flixel.tweens.FlxTween;
+#if sys
 import flixel.FlxG;
+import flixel.FlxCamera;
+import flixel.tweens.FlxTween;
+
+import flixel.input.keyboard.FlxKey;
+import flixel.util.FlxSignal.FlxTypedSignal;
+import flixel.system.FlxAssets.FlxSoundAsset;
+
+import openfl.display.Sprite;
+import openfl.utils.ByteArray;
+
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
-import flixel.input.keyboard.FlxKey;
 
 using StringTools;
 
@@ -318,3 +322,4 @@ enum abstract FileFormatOption(String) from String {
         }
     }
 }
+#end
