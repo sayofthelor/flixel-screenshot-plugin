@@ -12,15 +12,15 @@
 
 ## Flixel plugin for nice screenshot management, with many customizations
 ```haxe
-ScreenShotPlugin.enabled; // Enable/disable the plugin at any time
-ScreenShotPlugin.screenshtotKeys; // Keys to press to do a screenshot
-ScreenShotPlugin.saveFormat; // The save file type (PNG/ JPEG)
-ScreenShotPlugin.screenshotPath; // The path where to save the screenshots
-ScreenShotPlugin.flashColor; // The color of the flash that appears when taking a screenshot
-ScreenShotPlugin.outlineColor; // The shot display outline's color that appears when taking a screenshot
-ScreenShotPlugin.screenshotFadeTime; // The flash fade-in duration
-ScreenShotPlugin.jpegQuality; // If `saveFormat` is set to JPEG, this defines the quality of the JPEG files
-ScreenShotPlugin.sound; // Custom sound asset to play when the screenshot is taken (if null, no sound is played)
+ScreenShotPlugin.enabled:Bool; // Enable/disable the plugin at any time
+ScreenShotPlugin.screenshtotKeys:Array<FlxKey>; // Keys to press to do a screenshot
+ScreenShotPlugin.saveFormat:FileFormatOption; // The save file type (FileFormatOption.PNG/ FileFormatOption.JPEG)
+ScreenShotPlugin.screenshotPath:String; // The path where to save the screenshots
+ScreenShotPlugin.flashColor:Int; // The color of the flash that appears when taking a screenshot (0xAARRGGBB)
+ScreenShotPlugin.outlineColor:Int; // The shot display outline's color that appears when taking a screenshot (0xAARRGGBB)
+ScreenShotPlugin.screenshotFadeTime:Float; // The flash fade-in duration
+ScreenShotPlugin.jpegQuality:Int; // If `saveFormat` is set to JPEG, this defines the quality of the JPEG files (0-100)
+ScreenShotPlugin.sound:FlxSoundAsset; // Custom sound asset to play when the screenshot is taken (if null, no sound is played)
 ```
 
 ### Some original code from [flixel-addons](http://lib.haxe.org/p/flixel-addons).

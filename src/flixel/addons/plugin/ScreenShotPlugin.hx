@@ -158,6 +158,7 @@ class ScreenShotPlugin extends flixel.FlxBasic {
     }
 
     public static function set_jpegQuality(v:Int):Int {
+        if (v > 100 || v < 0) trace("Value out of range, clamped between 0 and 100");
         return jpegQuality = Std.int(Math.max(0, Math.min(100, v)));
     }
     
